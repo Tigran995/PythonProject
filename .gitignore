@@ -1,0 +1,12 @@
+# Игнорировать папку .idea
+   .idea/
+   # Кэш Python
+   __pycache__/
+   venv/
+   *.pyc
+   # Системные файлы
+   .DS_Store
+
+   # Логи и кэш
+   *.log
+   .pytest_cache/

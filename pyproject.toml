@@ -1,0 +1,35 @@
+[project]
+name = "my-proj"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Tigran",email = "tkemarkosyan@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.lint.dependencies]
+flake8 = "^7.2.0"
+mypy = "^1.15.0"
+black = "^25.1.0"
+isort = "^6.0.1"
+
+[tool.black]
+line-lenght = 119
+
+[tool.isort]
+line_lenght = 119
+multi_line_output = 3
+lines_after_imports = 1
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+
+[tool.flake8]
+max-line-lenght = 88
+exclude = "venv, migrations"
