@@ -12,8 +12,7 @@ def test_get_date():
     assert get_date("invalid-date") == "Некорректный формат даты"
 
 
-from datetime import datetime
-from src.masks1 import get_mask_credit_card, get_mask_account
+from src.utils.masks1 import get_mask_credit_card, get_mask_account
 
 
 def mask_account_card(data: str) -> str:
