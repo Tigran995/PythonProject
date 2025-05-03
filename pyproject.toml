@@ -29,7 +29,3 @@ lines_after_imports = 1
 [tool.mypy]
 strict = true
 ignore_missing_imports = true
-
-[tool.flake8]
-max-line-lenght = 88
-exclude = "venv, migrations"

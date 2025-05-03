@@ -1,18 +1,4 @@
-from src.widget import mask_account_card, get_date
-
-
-def test_mark_account_card():
-    assert mask_account_card("Visa Platform 786979228966051") == "Visa Platform 7869 79** **** 6051"
-    assert mask_account_card("Счет 79554108030135874396") == "Счет **4396"
-    assert mask_account_card("InvalidInput123") == "InvalidInput123"
-
-
-def test_get_date():
-    assert get_date("7954-49-21100-36-18-67-140") == "18_36_21100"
-    assert get_date("invalid-date") == "Некорректный формат даты"
-
-
-from src.utils.masks1 import get_mask_credit_card, get_mask_account
+from src.masks import get_mask_credit_card, get_mask_account
 
 
 def mask_account_card(data: str) -> str:
