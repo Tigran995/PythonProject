@@ -1,28 +1,31 @@
+from typing import Dict, Iterator, List, Iterable
 
-def filter_by_currency(transactions, currency):
+
+def filter_by_currency(transactions: List[Dict], currency_code: str) -> Iterator[Dict]:
+    """
+    Фильтрует транзакции по заданной валюте и возвращает итератор.
+
+    """
     for transaction in transactions:
-        op_omount = transaction.get("operautionAmout") or transaction.get("operationsmount")
-        if not op_omount:
-            continue
-
-        curr = op_omount.get("currency", {})
-        if curr.get("code") == currency or curr.get("name") ==currency:
+        op_amount = transaction.get("operationAmount", {})
+        curr = op_amount.get("currency", {}).get("code")
+        if curr == currency_code:
             yield transaction
 
 
-def transaction_description(transactions: list[dict]) -> iter:
+def transaction_descriptions(transactions: List[Dict]) -> Iterator[str]:
+    """
+    Генератор, который возвращает описания транзакций по очереди.
 
-    """Возвращает генератор описаний транзакций."""
-
+    """
     for transaction in transactions:
-        yield transaction.get("description")
+        yield transaction["description"]
 
 
-def card_number_generator(start: int, end: int) -> iter:
+def card_number_generator(start: int, end: int) -> Iterator[str]:
+    """
+    Генератор номеров банковских карт в заданном диапазоне.
 
-    """Генерирует номера карт в формате XXXX XXXX XXXX XXXX."""
-
-    for number in range(start, end + 1):
-        # Форматирование номера с ведущими нулями до 16 цифр
-        formatted = f"{number:016d}"
-        yield f"{formatted[:4]} {formatted[4:8]} {formatted[8:12]} {formatted[12:16]}"
+    """
+    for num in range(start, end + 1):
+        yield f"{num:016d}"[:4] + " " + f"{num:016d}"[4:8] + " " + f"{num:016d}"[8:12] + " " + f"{num:016d}"[12:16]
