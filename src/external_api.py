@@ -35,6 +35,5 @@ def convert_to_rub(transaction: Dict[str, Any]) -> Optional[float]:
             return float(amount) * rate
         except (requests.RequestException, KeyError):
             return None
-
     return None
 

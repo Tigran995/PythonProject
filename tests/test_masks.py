@@ -2,6 +2,7 @@ import pytest
 from masks import get_mask_card_number, get_mask_account
 
 # Фикстуры для тестов карт и счетов
+
 @pytest.fixture
 def card_numbers():
     return [
@@ -10,6 +11,7 @@ def card_numbers():
         ("1234", "Неверный номер карты"),  # Некорректная длина
         ("", "Неверный номер карты")        # Пустая строка
     ]
+
 
 @pytest.fixture
 def account_numbers():
@@ -24,6 +26,7 @@ def account_numbers():
 def test_get_mask_card_number(card_numbers):
     for number, expected in card_numbers:
         assert get_mask_card_number(number) == expected
+
 
 # Параметризованные тесты для счетов
 def test_get_mask_account(account_numbers):

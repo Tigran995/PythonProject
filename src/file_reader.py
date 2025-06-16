@@ -20,4 +20,3 @@ def read_excel(file_path: Path, sheet: str = "Transactions") -> List[Dict[str, A
     except Exception as e:
         logger.error(f"Excel read error: {e}")
         return []
-
