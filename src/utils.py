@@ -1,23 +1,22 @@
+
 import json
-from typing import List, Dict, Any
+from typing import List, Dict, Union
 
 
-def read_json_file(file_path: str) -> List[Dict[str, Any]]:
+def load_transactions(file_path: str) -> List[Dict[str, Union[str, float]]]:
     """
-    Читает JSON-файл и возвращает список словарей с данными о транзакциях.
+    Загружает транзакции из JSON-файла.
 
     Args:
         file_path: Путь к JSON-файлу
 
     Returns:
-        Список словарей с данными о транзакциях или пустой список, если файл
-        пустой, содержит не список или не найден.
+        Список словарей с транзакциями или пустой список при ошибках
     """
     try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            data = json.load(file)
-            if isinstance(data, list):
-                return data
-            return []
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data if isinstance(data, list) else []
     except (FileNotFoundError, json.JSONDecodeError):
         return []
+

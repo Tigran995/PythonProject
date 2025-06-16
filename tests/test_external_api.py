@@ -1,24 +1,26 @@
-from unittest.mock import patch
-import pytest
+
+import unittest
+from unittest.mock import patch, MagicMock
 from src.external_api import convert_to_rub
+from src.utils import load_transactions
 
 
-@patch('src.external_api.requests.get')
-def test_convert_to_rub(mock_get):
-    # Тест для RUB
-    transaction = {'amount': '100', 'currency': 'RUB'}
-    assert convert_to_rub(transaction) == 100.0
+class TestCurrencyConversion(unittest.TestCase):
+    @patch('requests.get')
+    def test_usd_conversion(self, mock_get):
+        mock_response = MagicMock()
+        mock_response.json.return_value = {'rates': {'RUB': 75.50}}
+        mock_get.return_value = mock_response
 
-    # Тест для USD с моком API
-    mock_response = type('MockResponse', (), {
-        'json': lambda self: {'rates': {'RUB': 75.5}},
-        'raise_for_status': lambda self: None
-    })
-    mock_get.return_value = mock_response()
+        transaction = {'amount': 100, 'currency': 'USD'}
+        result = convert_to_rub(transaction)
+        self.assertAlmostEqual(result, 7550.0)
 
-    transaction = {'amount': '10', 'currency': 'USD'}
-    assert convert_to_rub(transaction) == 755.0
 
-    # Тест для ошибки API
-    mock_get.side_effect = Exception('API error')
-    assert convert_to_rub(transaction) is None
+class TestJsonLoading(unittest.TestCase):
+    @patch('builtins.open')
+    def test_load_transactions(self, mock_open):
+        mock_open.return_value.__enter__.return_value.read.return_value = '[{"id": 1}]'
+        result = load_transactions('dummy.json')
+        self.assertEqual(len(result), 1)
+

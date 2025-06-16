@@ -10,8 +10,3 @@
    # Логи и кэш
    *.log
    .pytest_cache/
-   logs/
-   *.log
-   __pycache__/
-   *.py[cod]
-   .env

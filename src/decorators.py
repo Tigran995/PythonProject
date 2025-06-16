@@ -1,5 +1,5 @@
 import datetime
-from typing import Callable, Any, Optional, TextIO
+from typing import Callable, Any, Optional
 import functools
 
 
@@ -32,7 +32,8 @@ def log(filename: Optional[str] = None) -> Callable:
                 return result
 
             except Exception as e:
-                error_message = f"{timestamp} - {func_name} error: {type(e).__name__}. {inputs}\n"
+                error_message = f"""{timestamp} - {func_name}
+                error: {type(e).__name__}. {inputs}\n"""
 
                 if filename:
                     with open(filename, "a", encoding="utf-8") as f:
@@ -43,5 +44,4 @@ def log(filename: Optional[str] = None) -> Callable:
                 raise  # Пробрасываем исключение дальше
 
         return wrapper
-
     return decorator
