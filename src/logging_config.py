@@ -1,7 +1,5 @@
 import logging
-import os
 from pathlib import Path
-from typing import Dict
 
 
 def setup_logger(name: str, log_file: str) -> logging.Logger:
@@ -43,4 +41,3 @@ def setup_logger(name: str, log_file: str) -> logging.Logger:
 
     logger.addHandler(file_handler)
     return logger
-

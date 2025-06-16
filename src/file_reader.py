@@ -5,6 +5,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def read_csv(file_path: Path) -> List[Dict[str, Any]]:
     """Читает CSV с транзакциями. Возвращает [] при ошибках."""
     try:
@@ -12,6 +13,7 @@ def read_csv(file_path: Path) -> List[Dict[str, Any]]:
     except Exception as e:
         logger.error(f"CSV read error: {e}")
         return []
+
 
 def read_excel(file_path: Path, sheet: str = "Transactions") -> List[Dict[str, Any]]:
     """Читает Excel с транзакциями. Возвращает [] при ошибках."""

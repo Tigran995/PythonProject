@@ -1,12 +1,9 @@
 import pytest
 from src.processing import filter_by_state, sort_by_date
 
+
 # Фикстура с тестовыми данными
-
-
 @pytest.fixture
-
-
 def sample_operations():
     return [
         {"id": 1, "state": "EXECUTED", "date": "2023-10-01T12:00:00"},
@@ -15,9 +12,8 @@ def sample_operations():
         {"id": 4, "date": "2023-11-20T10:10:00"}  # Отсутствует state
     ]
 
+
 # Тесты для filter_by_state
-
-
 @pytest.mark.parametrize("state, expected_count", [
     ("EXECUTED", 2),
     ("CANCELLED", 1),
