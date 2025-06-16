@@ -1,3 +1,4 @@
+
 import json
 from typing import List, Dict, Union
 
@@ -18,3 +19,4 @@ def load_transactions(file_path: str) -> List[Dict[str, Union[str, float]]]:
             return data if isinstance(data, list) else []
     except (FileNotFoundError, json.JSONDecodeError):
         return []
+
