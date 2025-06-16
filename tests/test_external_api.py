@@ -1,3 +1,4 @@
+
 import unittest
 from unittest.mock import patch, MagicMock
 from src.external_api import convert_to_rub
@@ -22,3 +23,4 @@ class TestJsonLoading(unittest.TestCase):
         mock_open.return_value.__enter__.return_value.read.return_value = '[{"id": 1}]'
         result = load_transactions('dummy.json')
         self.assertEqual(len(result), 1)
+
